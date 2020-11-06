@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Projekti1</title>
+  </head>
+  <body>
+      <h1>Projekti 1</h1>
+
+      <p>Luo oma to-do listasi</p>
+      <p>Aloita täyttämällä seuraavat tiedot: </p>
+
+      <div class="container">
+        <div class="tab tab-1">
+          <table id="table">
+            <tr>
+              <th>Nimi</th>
+              <th>Tehtävä</th>
+              <th>Aloitus aika</th>
+              <th>Lopetus aika</th>
+            </tr>
+          </table>
+        </div>
+        <div class="tab tab-2">
+          Nimi :<input type="text" name="fname" id="fname"><br>
+          <span id="fbname"></span>
+          Tehtävä :<input type="text" id="task" name="task"><br>
+          <span id="fbtask"></span>
+          Aloitus aika :<input type="date" id="stime" name="stime"><br>
+          <span id="fbstime"></span>
+          Lopetus aika :<input type="date" id="etime" name="etime"><br>
+          <span id="fbetime"></span>
+        
+          <button onclick="addRow();">Lisää</button>
+          <button onclick="edit();">Muokkaa</button>
+          <button onclick="remove();">Poista</button>
+        </div>
+      </div>
+
+      <script>
+
+        var rIndex,
+        table = document.getElementById("table");
+
+        function checkEmpty () {
+          
+          var empty = false,
+          fname = document.getElementById("fname").value,
+          task = document.getElementById("task").value,
+          stime = document.getElementById("stime").value,
+          etime = document.getElementById("etime").value;
+          var fb = document.createElement("b");
+          var text = document.createTextNode("*Täytä kenttä");
+          fb.appendChild(text);
+          
+          
+
+          if(fname === "") {
+            document.getElementById('fbname').appendChild(text);
+            empty = true;
+          }
+          else if(task === "") {
+            document.getElementById('fbtask').appendChild(text);
+            empty = true;
+          }
+          else if(stime == "") {
+            document.getElementById('fbstime').appendChild(text);
+            empty = true;
+          }
+          if (etime == "") {
+            document.getElementById('fbetime').appendChild(text);
+            empty = true;
+          }
+          return empty;
+
+        }
+        function addRow() {
+          if(!checkEmpty()){
+          var newRow = table.insertRow(table.length),
+              cell1 = newRow.insertCell (0),
+              cell2 = newRow.insertCell (1),
+              cell3 = newRow.insertCell (2),
+              cell4 = newRow.insertCell (3),
+              fname = document.getElementById("fname").value,
+              task = document.getElementById("task").value,
+              stime = document.getElementById("stime").value,
+              etime = document.getElementById("etime").value;
+
+              cell1.innerHTML = fname;
+              cell2.innerHTML = task;
+              cell3.innerHTML = stime;
+              cell4.innerHTML = etime;
+
+              selectrow();
+            }
+            }
+            function selectrow() {
+              
+              for(var i = 0; i < table.rows.length; i++) {
+                table.rows[i].onclick = function() {
+                  rIndex = this.rowIndex;
+                  document.getElementById("fname").value = this.cells[0].innerHTML;
+                  document.getElementById("task").value = this.cells[1].innerHTML;
+                  document.getElementById("stime").value = this.cells[2].innerHTML;
+                  document.getElementById("etime").value = this.cells[3].innerHTML;
+                };
+              }
+            }
+            selectrow();
+
+            function edit() {
+              var fname = document.getElementById("fname").value,
+              task = document.getElementById("task").value,
+              stime = document.getElementById("stime").value,
+              etime = document.getElementById("etime").value;
+              if(!checkEmpty()){
+
+              table.rows[rIndex].cells[0].innerHTML = fname;
+              table.rows[rIndex].cells[1].innerHTML = task;
+              table.rows[rIndex].cells[2].innerHTML = stime;
+              table.rows[rIndex].cells[3].innerHTML = etime;
+              }
+            }
+
+            function remove() {
+              table.deleteRow(rIndex);
+            }
+      </script>
+
+
+      
+  </body>
+
+
+</html>

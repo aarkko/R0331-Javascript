@@ -1,0 +1,41 @@
+
+
+body {
+    background-color: blanchedalmond;
+}
+
+h1 {
+    
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+p {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+table, th, td {
+    width:100%;
+    font-family: 'Courier New', Courier, monospace;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+tr, th, td {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 15px;
+}
+input {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+}
+
+
+.container {overflow: hidden}
+.tab {float: left}
+.tab-2{margin-left: 50px}
+.tab-2 input{display: block;margin-bottom: 10px} 
+tr{transition: all .25s ease-in-out}
+tr:hover{background-color: lightgray;cursor: pointer;}
